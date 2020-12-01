@@ -1,6 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
 import {
-  EProductType,
   EProductUnitSubType,
   EProductUnitType,
   ICategory,
@@ -8,7 +7,7 @@ import {
   ISourceUnit,
   ISupplier,
   ISupplyingItem,
-} from './types';
+} from '../types';
 
 // ALLERGENS
 

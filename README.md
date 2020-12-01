@@ -15,6 +15,6 @@
 
 ## Tool commands
 
-| Command                          | Description                |
-| -------------------------------- | -------------------------- |
-| `yarn convert:jsonToProductBulk` | Run prettier to clean code |
+| Command                                                                                 | Description                                                                  |
+| --------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `yarn convert:jsonToProductBulk --source=convertcsv.json --destination=importBulk.json` | Convert you csvXJson to a json compatible with bulk import (located in dist) |

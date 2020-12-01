@@ -9,10 +9,10 @@ import {
   smartUnitsMerge,
 } from './business';
 
-export const extractDataFromJSON = (fileName: string): object[] => {
+export const extractDataFromJSON = (fileName: string): unknown[] => {
   try {
     const rawdata = readFileSync(fileName);
-    const data: object[] = JSON.parse(rawdata.toString());
+    const data: unknown[] = JSON.parse(rawdata.toString());
 
     return data;
   } catch (e) {
@@ -21,7 +21,7 @@ export const extractDataFromJSON = (fileName: string): object[] => {
   }
 };
 
-export const mapRawDataToNormalizedData = (data: object[]) =>
+export const mapRawDataToNormalizedData = (data: unknown[]): IInputData[] =>
   data.map(
     (rawProduct): IInputData => {
       const keys = Object.keys(rawProduct);
@@ -46,7 +46,10 @@ export const mapRawDataToNormalizedData = (data: object[]) =>
     },
   );
 
-export const mapNormalizedDataToImportProducts = (data: IInputData[], allergensConfig: IAllergen[]) => {
+export const mapNormalizedDataToImportProducts = (
+  data: IInputData[],
+  allergensConfig: IAllergen[],
+): { products: IProductImport[] } => {
   const products = data.reduce((acc, curr, index): IProductImport[] => {
     const { allergens, category, code, name, type } = curr;
 

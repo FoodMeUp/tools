@@ -13,7 +13,7 @@ import {
 
 config();
 
-export const getAllergens = (allergensRaw: string, allergensConfig: IAllergen[]) => {
+export const getAllergens = (allergensRaw: string, allergensConfig: IAllergen[]): string[] => {
   if (!allergensRaw || allergensRaw === '') {
     return [];
   }

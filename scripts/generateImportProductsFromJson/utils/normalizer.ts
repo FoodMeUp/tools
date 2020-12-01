@@ -1,5 +1,5 @@
 import { readFileSync } from 'fs';
-import { EProductType, IInputData, IProductImport } from '../types';
+import { EProductType, IAllergen, IInputData, IProductImport } from '../types';
 import {
   getAllergens,
   getCategory,
@@ -27,7 +27,7 @@ export const mapRawDataToNormalizedData = (data: object[]) =>
       const keys = Object.keys(rawProduct);
 
       return {
-        code: rawProduct[keys[0]],
+        code: `${rawProduct[keys[0]]}`,
         name: rawProduct[keys[1]],
         category: rawProduct[keys[2]],
         allergens: rawProduct[keys[3]],
@@ -40,14 +40,14 @@ export const mapRawDataToNormalizedData = (data: object[]) =>
         packagingUnit: rawProduct[keys[10]],
         supplyingItemAmount: rawProduct[keys[11]],
         supplyingItemAmountUnit: rawProduct[keys[12]],
-        supplyingItemCode: rawProduct[keys[13]],
+        supplyingItemCode: `${rawProduct[keys[13]]}`,
         supplyingItemSupplierName: rawProduct[keys[14]],
       };
     },
   );
 
-export const mapNormalizedDataToImportProducts = (data: IInputData[]) => {
-  return data.reduce((acc, curr, index): IProductImport[] => {
+export const mapNormalizedDataToImportProducts = (data: IInputData[], allergensConfig: IAllergen[]) => {
+  const products = data.reduce((acc, curr, index): IProductImport[] => {
     const { allergens, category, code, name, type } = curr;
 
     try {
@@ -57,7 +57,7 @@ export const mapNormalizedDataToImportProducts = (data: IInputData[]) => {
       return [
         ...acc,
         {
-          allergens: getAllergens(allergens),
+          allergens: getAllergens(allergens, allergensConfig),
           code,
           category: getCategory(category),
           name,
@@ -72,4 +72,6 @@ export const mapNormalizedDataToImportProducts = (data: IInputData[]) => {
 
     return acc;
   }, []);
+
+  return { products };
 };

@@ -1,3 +1,9 @@
+export interface IAllergen {
+  id: string;
+  name: string;
+  code: number;
+}
+
 export interface IInputData {
   code: string;
   name: string;

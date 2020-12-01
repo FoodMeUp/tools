@@ -7,7 +7,7 @@
     "yarn": "1.22.x"
   },
   "scripts": {
-    "convert:jsonToProductBulk": "ts-node -T scripts/generateImportProductsFromJson/main.ts convertcsv.json",
+    "convert:jsonToProductBulk": "ts-node scripts/generateImportProductsFromJson/main.ts convertcsv.json",
     "pretty": "yarn pretty:check --write",
     "pretty:check": "prettier \"scripts/**/*.ts\" --config .prettierrc.js --check"
   },

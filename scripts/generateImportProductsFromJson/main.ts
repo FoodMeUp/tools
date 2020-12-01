@@ -5,8 +5,9 @@
  * 2. npx ts-node -T generateImportProductsFromJson/main.ts -- file.json
  */
 
-import dotenv from 'dotenv';
-import fs from 'fs';
+import { config } from 'dotenv';
+import { readFileSync, writeFileSync } from 'fs';
+
 import { EProductType, IInputData, IProductImport } from './types';
 import {
   getAllergens,
@@ -17,14 +18,14 @@ import {
   smartUnitsMerge,
 } from './utils';
 
-dotenv.config();
+config();
 
 // FUNCTIONS
 
 const extractDataFromJSON = (): object[] => {
   try {
     const fileName = process.argv[2];
-    const rawdata = fs.readFileSync(`${process.cwd()}/${fileName}`);
+    const rawdata = readFileSync(`${process.cwd()}/${fileName}`);
     const data: object[] = JSON.parse(rawdata.toString());
 
     return data;
@@ -98,6 +99,6 @@ if (data) {
 
   // console.log(util.inspect(productsToImport, false, null, true));
 
-  let importStr = JSON.stringify(productsToImport);
-  fs.writeFileSync('importBulk.json', importStr);
+  const importStr = JSON.stringify(productsToImport);
+  writeFileSync('importBulk.json', importStr);
 }

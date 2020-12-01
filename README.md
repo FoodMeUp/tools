@@ -2,8 +2,10 @@
 
 ## Installation
 
-1. `yarn install`
-2. choose your command below ;)
+1. Install project `yarn install`
+2. Create env file `cp .env.origin .env`
+3. Fill `.env` file
+4. choose your command below ;)
 
 ## Utility commands
 

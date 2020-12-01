@@ -5,18 +5,17 @@
  * 2. npx ts-node -T generateImportProductsFromJson/main.ts -- file.json
  */
 
-import fs from "fs";
-import dotenv from "dotenv";
-
-import { EProductType, IInputData, IProductImport } from "./types";
+import dotenv from 'dotenv';
+import fs from 'fs';
+import { EProductType, IInputData, IProductImport } from './types';
 import {
   getAllergens,
-  getConditonningUnitFromUnits,
   getCategory,
+  getConditonningUnitFromUnits,
   getSupplyingItem,
   getUnitsFromUnitPiece,
   smartUnitsMerge,
-} from "./utils";
+} from './utils';
 
 dotenv.config();
 
@@ -57,7 +56,7 @@ const mapRawDataToNormalizedData = (data: object[]) =>
         supplyingItemCode: rawProduct[keys[13]],
         supplyingItemSupplierName: rawProduct[keys[14]],
       };
-    }
+    },
   );
 
 const mapNormalizedDataToImportProducts = (data: IInputData[]) => {
@@ -76,10 +75,7 @@ const mapNormalizedDataToImportProducts = (data: IInputData[]) => {
           category: getCategory(category),
           name,
           supplyingItems: [getSupplyingItem(curr, units, packagingUnit)],
-          type:
-            type.toLowerCase() !== "divers"
-              ? EProductType.Food
-              : EProductType.Other,
+          type: type.toLowerCase() !== 'divers' ? EProductType.Food : EProductType.Other,
           units: smartUnitsMerge(units, [packagingUnit]),
         },
       ];
@@ -94,7 +90,7 @@ const mapNormalizedDataToImportProducts = (data: IInputData[]) => {
 // MAIN
 
 const data = extractDataFromJSON();
-const util = require("util");
+const util = require('util');
 
 if (data) {
   const dataToImport = mapRawDataToNormalizedData(data);
@@ -103,5 +99,5 @@ if (data) {
   // console.log(util.inspect(productsToImport, false, null, true));
 
   let importStr = JSON.stringify(productsToImport);
-  fs.writeFileSync("importBulk.json", importStr);
+  fs.writeFileSync('importBulk.json', importStr);
 }

@@ -1,0 +1,34 @@
+{
+  "name": "tools",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": "12.18.x",
+    "yarn": "1.22.x"
+  },
+  "scripts": {
+    "convert:jsonToProductBulk": "ts-node scripts/generateImportProductsFromJson/main.ts",
+    "pretty": "yarn lint:fix && yarn pretty:check --write",
+    "pretty:check": "prettier \"scripts/**/*.ts\" --config .prettierrc.js --check",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "yarn lint --fix"
+  },
+  "dependencies": {
+    "@types/yargs": "^15.0.10",
+    "@typescript-eslint/eslint-plugin": "^4.9.0",
+    "@typescript-eslint/parser": "^4.9.0",
+    "dotenv": "^8.2.0",
+    "eslint": "^7.14.0",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "got": "^11.8.0",
+    "prettier": "^2.2.1",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.1.0",
+    "uuid": "^8.3.1",
+    "yargs": "^16.1.1"
+  },
+  "devDependencies": {
+    "husky": "^4.3.0"
+  }
+}

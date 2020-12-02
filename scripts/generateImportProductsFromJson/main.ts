@@ -1,10 +1,3 @@
-/**
- * HOW TO RUN SCRIPT:
- *
- * 1. npm install typescript node-ts uuid
- * 2. npx ts-node -T generateImportProductsFromJson/main.ts -- file.json
- */
-
 import { config } from 'dotenv';
 import got from 'got';
 import { writeFileSync } from 'fs';

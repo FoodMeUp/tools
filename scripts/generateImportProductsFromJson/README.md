@@ -1,8 +1,8 @@
 # Import file example
 
-The raw excel import file example is located here : ./examples/FoodMeUp_import_fr.xlsx
+The raw excel import file example is located here: `./examples/FoodMeUp_import_fr.xlsx`
 
-Its conversion towards a json file is located in /examples/convertcsv.json
+Its conversion towards a json file is located here: `./examples/convertcsv.json`
 
 # Column matching
 
